@@ -1,0 +1,3 @@
+#!/bin/bash
+cd $HOME
+./bin/rails server $* -p 3000
