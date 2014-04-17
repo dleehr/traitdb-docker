@@ -1,8 +1,12 @@
 # -*- sh -*-
-FROM ubuntu/ubuntu:12.04
+FROM ubuntu:12.04
+
+# Update sources
+RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
+RUN apt-get update
 
 # development tools
-RUN apt-get -qy install git vim tmux
+RUN apt-get -qy install git vim
 
 # ruby 1.9.3 and build dependencies
 # There's no ubuntu package for 2.0
@@ -16,9 +20,10 @@ RUN gem install bundler
 RUN adduser --disabled-password --home=/rails --gecos "" rails
 
 # copy the Rails app
-# we assume we have cloned the "docrails" repository locally
-#  and it is clean; see the "prepare" script
 ADD TraitDB /rails
+
+# Set the owner
+RUN chown -R rails /rails
 
 # copy and execute the setup script
 # this will run bundler, setup the database, etc.
