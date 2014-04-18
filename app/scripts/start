@@ -1,5 +1,5 @@
 #!/bin/bash
-cd $HOME
+cd /rails
 
 ./bin/rake db:migrate
 ./bin/rails server $* -p 3000
