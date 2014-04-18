@@ -4,5 +4,3 @@ cd $HOME
 
 bundle config path "$HOME/bundler"
 bundle install
-
-./bin/rake db:migrate
