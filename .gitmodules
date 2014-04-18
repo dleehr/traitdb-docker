@@ -1,3 +1,3 @@
-[submodule "TraitDB"]
-	path = TraitDB
+[submodule "app/TraitDB"]
+	path = app/TraitDB
 	url = git@github.com:NESCent/TraitDB.git
