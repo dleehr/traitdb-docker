@@ -1,5 +1,5 @@
 # -*- sh -*-
-FROM ubuntu:12.04
+FROM ubuntu:precise
 
 # Update sources
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
@@ -20,7 +20,7 @@ RUN gem install bundler
 RUN adduser --disabled-password --home=/rails --gecos "" rails
 
 # copy the Rails app
-ADD TraitDB /rails
+ADD ../TraitDB /rails
 
 # Set the owner
 RUN chown -R rails /rails
