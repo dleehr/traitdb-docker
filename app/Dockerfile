@@ -7,14 +7,31 @@ MAINTAINER Dan Leehr dan.leehr@nescent.org
 RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt/sources.list
 RUN apt-get update
 
-# development tools
-RUN apt-get -qy install git vim
+# ubuntu packages
+RUN apt-get install -qy git vim curl
+RUN apt-get install -qy build-essential libpq-dev libv8-dev libsqlite3-dev
+RUN apt-get install -qy --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev
 
-# ruby 1.9.3 and build dependencies
-# There's no ubuntu package for 2.0
-RUN apt-get -qy install ruby1.9.1 ruby1.9.1-dev build-essential libpq-dev libv8-dev libsqlite3-dev
+# Install rbenv and ruby-build
+RUN git clone https://github.com/sstephenson/rbenv.git /root/.rbenv
+RUN git clone https://github.com/sstephenson/ruby-build.git /root/.rbenv/plugins/ruby-build
+RUN ./root/.rbenv/plugins/ruby-build/install.sh
+ENV PATH /root/.rbenv/bin:$PATH
+RUN echo 'eval "$(rbenv init -)"' >> /etc/profile.d/rbenv.sh # or /etc/profile
+RUN echo 'eval "$(rbenv init -)"' >> .bashrc
+
+# Install ruby
+ENV CONFIGURE_OPTS --disable-install-doc
+RUN rbenv install 2.0.0-p451
+
+# Set global rbenv
+RUN rbenv global 2.0.0-p451
+
+RUN apt-get clean
 
 # bundler
+
+RUN rbenv rehash
 RUN gem install bundler
 
 # create a "rails" user
