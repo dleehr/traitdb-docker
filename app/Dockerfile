@@ -37,6 +37,9 @@ RUN su rails -c /setup
 # copy the start script
 ADD scripts/start /start
 
+# copy the upgrade-admin script
+ADD scripts/upgrade-admin upgrade-admin
+
 EXPOSE 3000
 USER rails
 CMD /start
