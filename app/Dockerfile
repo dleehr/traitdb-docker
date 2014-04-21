@@ -8,7 +8,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu precise main universe" > /etc/apt
 RUN apt-get update
 
 # ubuntu packages
-RUN apt-get install -qy git vim curl
+RUN apt-get install -qy git vim curl file
 RUN apt-get install -qy build-essential libpq-dev libv8-dev libsqlite3-dev
 RUN apt-get install -qy --force-yes zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev
 
