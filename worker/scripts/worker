@@ -1,0 +1,14 @@
+#!/bin/bash
+cd /rails
+
+# Setup env variables for DB connection
+# DB_PORT... variables are exported by docker when linking a container with alias DB
+
+export TRAITDB_PG_DEV_USER=traitdb_dev_user
+export TRAITDB_PG_DEV_PASS=traitdb_dev_pass
+export TRAITDB_PG_DEV_HOST=$DB_PORT_5432_TCP_ADDR
+export TRAITDB_PG_DEV_PORT=$DB_PORT_5432_TCP_PORT
+
+./bin/rake db:migrate
+mkdir -p tmp/pids
+./script/delayed_job run
