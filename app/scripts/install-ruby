@@ -1,8 +1,8 @@
 #!/bin/sh
 
-curl -O http://cache.ruby-lang.org/pub/ruby/2.0/ruby-2.0.0-p451.tar.gz
-tar -xzf ruby-2.0.0-p451.tar.gz
-cd ruby-2.0.0-p451
+curl -O http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.gz
+tar -xzf ruby-2.1.2.tar.gz
+cd ruby-2.1.2
 ./configure
 make
 make install
